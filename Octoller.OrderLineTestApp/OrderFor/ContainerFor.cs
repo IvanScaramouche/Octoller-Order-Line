@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Octoller.OrderLineTestApp.Default.OrderFor {
+namespace Octoller.OrderLineTestApp.OrderFor {
     public sealed class ContainerFor : IOrderContainer {
 
         private static string key = "for";

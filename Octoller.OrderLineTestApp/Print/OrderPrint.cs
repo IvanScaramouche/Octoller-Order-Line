@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Octoller.OrderLineTestApp.Default.Print {
+namespace Octoller.OrderLineTestApp.Print {
     public sealed class OrderPrint : IOrderHandler {
 
         private IOrderHandler next;
