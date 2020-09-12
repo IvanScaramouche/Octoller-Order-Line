@@ -1,8 +1,6 @@
 ﻿using Octoller.OrderLineHandler.Processor;
 using Octoller.OrderLineHandler.ServiceObjects;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Octoller.OrderLineTestApp.OrderFor {
     public sealed class OrderFor : IOrderHandler {

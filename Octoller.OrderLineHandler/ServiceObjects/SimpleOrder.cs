@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Octoller.OrderLineHandler.ServiceObjects {
     public class SimpleOrder {
 

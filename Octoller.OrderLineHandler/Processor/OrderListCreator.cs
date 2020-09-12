@@ -3,7 +3,6 @@ using Octoller.OrderLineHandler.ServiceObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Octoller.OrderLineHandler.Processor {
     public sealed class OrderListCreator {

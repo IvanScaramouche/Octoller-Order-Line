@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Octoller.OrderLineHandler.Collections {
     public sealed class OrderList : IEnumerable<SimpleOrder> {

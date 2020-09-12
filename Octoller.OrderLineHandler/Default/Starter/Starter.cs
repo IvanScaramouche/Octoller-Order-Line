@@ -1,8 +1,5 @@
 ﻿using Octoller.OrderLineHandler.Processor;
 using Octoller.OrderLineHandler.ServiceObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Octoller.OrderLineHandler.Default.Starter {
     public sealed class Starter : IOrderHandler {
