@@ -17,5 +17,7 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
 
         void SetError(string description, bool isError = true);
         string GetError();
+
+        ///TODO: Добавить метод Clear
     }
 }

@@ -16,9 +16,7 @@ namespace Octoller.OrderLineHandler.Default.Starter {
             }
         }
 
-        public void SetArgument(params string[] arguments) {
-
-        }
+        public void SetArgument(params string[] arguments) { }
 
         public void SetErrorInfo(string info) {
             errorInfo = info;

@@ -6,7 +6,7 @@ using System;
 namespace Octoller.OrderLineTestApp {
     class Program {
         static void Main() {
-            InputHandler<ChContext> handler = new InputHandler<ChContext>();
+            InputHandler handler = new InputHandler();
             handler.AddOrder(new ContainerPrint());
             handler.AddOrder(new ContainerFor());
 
