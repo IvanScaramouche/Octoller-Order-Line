@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Octoller.OrderLineHandler.Collections {
     public sealed class OrderList : IEnumerable<SimpleOrder> {
 
-        private Stack<SimpleOrder> orders = new Stack<SimpleOrder>();
+        private Queue<SimpleOrder> orders = new Queue<SimpleOrder>();
 
         public int Count {
             get => orders.Count;
@@ -18,19 +18,19 @@ namespace Octoller.OrderLineHandler.Collections {
 
         public void Add(SimpleOrder order) {
             if (order != null) {
-                orders.Push(order);
+                orders.Enqueue(order);
             }
         }
 
         public void AddRange(SimpleOrder[] array) {
             foreach (var order in array) {
-                orders.Push(order);
+                orders.Enqueue(order);
             }
         }
 
         public SimpleOrder GetNext() {
             if (orders.Count > 0) {
-                return orders.Pop();
+                return orders.Dequeue();
             }
 
             return null;
