@@ -1,7 +1,7 @@
-﻿using Octoller.OrderLineHandler.Processor;
-using Octoller.OrderLineHandler.ServiceObjects;
-using System;
+﻿using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Processor;
 using System.Text;
+using System;
 
 namespace Octoller.OrderLineTestApp.Print {
     public sealed class OrderPrint : IOrderHandler {

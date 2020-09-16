@@ -1,7 +1,8 @@
-﻿using Octoller.OrderLineHandler.Collections;
-using Octoller.OrderLineHandler.Default.Starter;
+﻿using Octoller.OrderLineHandler.Default.Starter;
 using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Collections;
 using System.Collections.Generic;
+using Octoller.OrderLineHandler.Default.Helper;
 
 namespace Octoller.OrderLineHandler.Processor {
     public sealed class InputHandler {
@@ -16,6 +17,7 @@ namespace Octoller.OrderLineHandler.Processor {
 
         public InputHandler() {
             creator = new OrderListCreator();
+            AddOrder(new HelperHead());
             ///TODO: добавить возможность установки своих разделителей для комманд и аргументов
             ///TODO: установка разделителей через строку json 
         }
@@ -47,6 +49,10 @@ namespace Octoller.OrderLineHandler.Processor {
                 if (orderContainers.TryGetValue(order.Order, out IOrderContainer value)) {
                     var temp = value.GetHandler();
                     temp.SetArgument(order.Arguments);
+                    if (temp is HelperHandler hh) {
+                        hh.SetArgument(orderContainers);
+                        temp = hh;
+                    }
                     handler.SetNext(temp);
                     handler = temp;
                 } else {

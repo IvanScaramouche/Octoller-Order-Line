@@ -1,11 +1,12 @@
-﻿using Octoller.OrderLineTestApp.OrderFor;
+﻿using Octoller.OrderLineHandler.Processor;
+using Octoller.OrderLineTestApp.OrderFor;
 using Octoller.OrderLineTestApp.Print;
-using Octoller.OrderLineHandler.Processor;
 using System;
 
 namespace Octoller.OrderLineTestApp {
     class Program {
         static void Main() {
+
             InputHandler handler = new InputHandler();
             handler.AddOrder(new ContainerPrint());
             handler.AddOrder(new ContainerFor());
@@ -23,6 +24,8 @@ namespace Octoller.OrderLineTestApp {
                 if (context.IsError) {
                     Console.WriteLine(context.GetError());
                 }
+
+                context.Clear();
             }
         }
     }

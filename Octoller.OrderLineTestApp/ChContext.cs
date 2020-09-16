@@ -25,5 +25,12 @@ namespace Octoller.OrderLineTestApp {
             error = description;
             IsError = isError;
         }
+
+        public void Clear() {
+            error = default;
+            Complite = false;
+            IsError = false;
+            Action = null;
+        }
     }
 }

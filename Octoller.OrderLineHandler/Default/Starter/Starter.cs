@@ -1,5 +1,5 @@
-﻿using Octoller.OrderLineHandler.Processor;
-using Octoller.OrderLineHandler.ServiceObjects;
+﻿using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineHandler.Default.Starter {
     public sealed class Starter : IOrderHandler {

@@ -1,7 +1,6 @@
 ﻿using Octoller.OrderLineHandler.ServiceObjects;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Octoller.OrderLineHandler.Collections {
     public sealed class OrderList : IEnumerable<SimpleOrder> {
