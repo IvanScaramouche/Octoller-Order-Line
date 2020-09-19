@@ -18,7 +18,10 @@ namespace Octoller.OrderLineTestApp {
                 var context = handler.ReadLine(line, new ChContext());
 
                 if (context.Complite) {
-                    context.Action();
+                    context.Action?.Invoke();
+                    if (context.IsMessage) {
+                        Console.WriteLine(context.GetMessage());
+                    }
                 }
 
                 if (context.IsError) {

@@ -7,7 +7,11 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
             get; set;
         }
 
-        public bool IsError {
+        bool IsError {
+            get; set;
+        }
+
+        bool IsMessage {
             get; set;
         }
 
@@ -15,8 +19,10 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
             get; set;
         }
 
-        void SetError(string description, bool isError = true);
+        void SetError(string message, bool isError = true);
+        void SetMessage(string message, bool isMessage = true);
         string GetError();
+        string GetMessage();
         void Clear();
     }
 }

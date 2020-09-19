@@ -5,6 +5,7 @@ namespace Octoller.OrderLineTestApp {
     public sealed class ChContext : IChContext {
 
         private string error;
+        private string message;
 
         public bool Complite {
             get; set;
@@ -14,6 +15,9 @@ namespace Octoller.OrderLineTestApp {
             get; set;
         }
         public Action Action {
+            get; set;
+        }
+        public bool IsMessage {
             get; set;
         }
 
@@ -31,6 +35,14 @@ namespace Octoller.OrderLineTestApp {
             Complite = false;
             IsError = false;
             Action = null;
+        }
+
+        public void SetMessage(string description, bool isMessage = true) {
+            message = description;
+        }
+
+        public string GetMessage() {
+            return message;
         }
     }
 }

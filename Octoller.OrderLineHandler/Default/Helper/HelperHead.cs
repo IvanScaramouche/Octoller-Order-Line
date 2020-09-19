@@ -1,12 +1,12 @@
-﻿using Octoller.OrderLineHandler.Processor;
-using Octoller.OrderLineHandler.ServiceObjects;
-
+﻿using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineHandler.Default.Helper {
     public sealed class HelperHead : IOrderContainer {
 
-        private string key = "help";
-        private string description = "Отображает подсказку по всем доступным командам";
+        private static string key = "help";
+        private static string description = 
+            "Отображает подсказку по всем доступным командам";
 
         public string Key {
             get => key;

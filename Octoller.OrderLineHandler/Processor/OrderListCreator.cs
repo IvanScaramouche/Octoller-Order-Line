@@ -1,8 +1,8 @@
-﻿using Octoller.OrderLineHandler.Collections;
-using Octoller.OrderLineHandler.ServiceObjects;
-using System;
+﻿using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Octoller.OrderLineHandler.Processor {
     public sealed class OrderListCreator {

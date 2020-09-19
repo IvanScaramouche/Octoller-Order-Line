@@ -1,8 +1,8 @@
 ﻿using Octoller.OrderLineHandler.Default.Starter;
 using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Default.Helper;
 using Octoller.OrderLineHandler.Collections;
 using System.Collections.Generic;
-using Octoller.OrderLineHandler.Default.Helper;
 
 namespace Octoller.OrderLineHandler.Processor {
     public sealed class InputHandler {

@@ -1,5 +1,5 @@
-﻿using Octoller.OrderLineHandler.Processor;
-using Octoller.OrderLineHandler.ServiceObjects;
+﻿using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Processor;
 using System.Collections.Generic;
 using System.Text;
 
