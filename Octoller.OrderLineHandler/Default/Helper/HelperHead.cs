@@ -1,7 +1,7 @@
 ﻿using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
-namespace Octoller.OrderLineHandler.Default.Helper {
+namespace Octoller.OrderLineHandler.Default {
     public sealed class HelperHead : IOrderContainer {
 
         private static string key = "help";

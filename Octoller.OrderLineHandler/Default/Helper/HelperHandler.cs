@@ -3,7 +3,7 @@ using Octoller.OrderLineHandler.Processor;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Octoller.OrderLineHandler.Default.Helper {
+namespace Octoller.OrderLineHandler.Default {
     public sealed class HelperHandler : IOrderHandler {
 
         private IOrderHandler next;

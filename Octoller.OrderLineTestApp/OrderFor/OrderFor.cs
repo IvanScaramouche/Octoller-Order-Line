@@ -2,7 +2,7 @@
 using Octoller.OrderLineHandler.Processor;
 using System;
 
-namespace Octoller.OrderLineTestApp.OrderFor {
+namespace Octoller.OrderLineTestApp {
     public sealed class OrderFor : IOrderHandler {
 
         private IOrderHandler next;

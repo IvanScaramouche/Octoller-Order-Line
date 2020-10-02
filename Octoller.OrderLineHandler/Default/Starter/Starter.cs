@@ -1,7 +1,7 @@
 ﻿using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
-namespace Octoller.OrderLineHandler.Default.Starter {
+namespace Octoller.OrderLineHandler.Default {
     public sealed class Starter : IOrderHandler {
 
         private IOrderHandler next;

@@ -1,7 +1,7 @@
 ﻿using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
-namespace Octoller.OrderLineTestApp.OrderFor {
+namespace Octoller.OrderLineTestApp {
     public sealed class ContainerFor : IOrderContainer {
 
         private static string key = "for";

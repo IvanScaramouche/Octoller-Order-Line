@@ -3,7 +3,7 @@ using Octoller.OrderLineHandler.Processor;
 using System.Text;
 using System;
 
-namespace Octoller.OrderLineTestApp.Print {
+namespace Octoller.OrderLineTestApp {
     public sealed class OrderPrint : IOrderHandler {
 
         private IOrderHandler next;

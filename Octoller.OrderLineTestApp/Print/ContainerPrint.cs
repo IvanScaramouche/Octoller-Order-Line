@@ -1,7 +1,7 @@
 ﻿using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
-namespace Octoller.OrderLineTestApp.Print {
+namespace Octoller.OrderLineTestApp {
     public sealed class ContainerPrint : IOrderContainer {
 
         private static string key = "print";

@@ -1,6 +1,5 @@
-﻿using Octoller.OrderLineHandler.Default.Starter;
+﻿using Octoller.OrderLineHandler.Default;
 using Octoller.OrderLineHandler.ServiceObjects;
-using Octoller.OrderLineHandler.Default.Helper;
 using Octoller.OrderLineHandler.Collections;
 using System.Collections.Generic;
 
