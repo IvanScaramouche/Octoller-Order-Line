@@ -40,7 +40,7 @@ namespace Octoller.OrderLineTestApp {
 
         private static string key = "more";
         private static string description = 
-            "сравнивает два числа и возвращает большее";
+            "выводит большее число из полученного массива";
 
         public string Key {
             get => key;
