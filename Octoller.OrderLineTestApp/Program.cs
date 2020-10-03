@@ -1,6 +1,5 @@
 ﻿using Octoller.OrderLineHandler.Processor;
-using Octoller.OrderLineTestApp.OrderFor;
-using Octoller.OrderLineTestApp.Print;
+using Octoller.OrderLineHandler.ServiceObjects;
 using System;
 
 namespace Octoller.OrderLineTestApp {
@@ -8,14 +7,14 @@ namespace Octoller.OrderLineTestApp {
         static void Main() {
 
             InputHandler handler = new InputHandler();
-            handler.AddOrder(new ContainerPrint());
+            handler.AddOrder(new ContainerMore());
             handler.AddOrder(new ContainerFor());
 
             while (true) {
 
                 string line = Console.ReadLine();
 
-                var context = handler.ReadLine(line, new ChContext());
+                var context = handler.ParseOrderLine(line, new ChContext());
 
                 if (context.Complite) {
                     context.Action?.Invoke();
@@ -27,8 +26,6 @@ namespace Octoller.OrderLineTestApp {
                 if (context.IsError) {
                     Console.WriteLine(context.GetError());
                 }
-
-                context.Clear();
             }
         }
     }

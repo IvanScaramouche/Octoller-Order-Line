@@ -1,29 +1,38 @@
-﻿using Octoller.OrderLineHandler.ServiceObjects;
+﻿/*
+ * ***************************************************************************************
+ * 
+ * Octoller.LineCommander
+ * 03.10.2020
+ *  
+ *****************************************************************************************  
+ */
+
+using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineHandler.Default {
-    public sealed class Starter : IOrderHandler {
+    public sealed class Starter : ICallLinked {
 
-        private IOrderHandler next;
-        private string errorInfo = null;
 
-        public void Invoke(IChContext context) {
+        private ICallLinked next;
+
+        public Starter() { }
+
+        public void PrepareHandler(IOrderHandler handler, string[] arguments) {
+            return;
+        }
+
+        public IChContext RunHandler(IChContext context) {
             if (next is null) {
                 context.Complite = false;
-                context.SetError((errorInfo != null ? errorInfo : "Не установлен стартовый элемент очереди обработки!"));
-            } else {
-                next.Invoke(context);
+                context.SetError("Execution chain error");
+                return context;
             }
+
+            return next?.RunHandler(context); 
         }
 
-        public void SetArgument(params string[] arguments) { }
-
-        public void SetErrorInfo(string info) {
-            errorInfo = info;
-        }
-
-        public void SetNext(IOrderHandler handler) {
-            next = handler;
-        }
+        public void SetNext(ICallLinked container, TransitionSign transitionSign) =>
+            next = container;
     }
 }

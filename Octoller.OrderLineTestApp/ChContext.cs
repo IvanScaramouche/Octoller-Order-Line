@@ -14,9 +14,11 @@ namespace Octoller.OrderLineTestApp {
         public bool IsError {
             get; set;
         }
+
         public Action Action {
             get; set;
         }
+
         public bool IsMessage {
             get; set;
         }
@@ -30,15 +32,9 @@ namespace Octoller.OrderLineTestApp {
             IsError = isError;
         }
 
-        public void Clear() {
-            error = default;
-            Complite = false;
-            IsError = false;
-            Action = null;
-        }
-
         public void SetMessage(string description, bool isMessage = true) {
             message = description;
+            IsMessage = isMessage;
         }
 
         public string GetMessage() {

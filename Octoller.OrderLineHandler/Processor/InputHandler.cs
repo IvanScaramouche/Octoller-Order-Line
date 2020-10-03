@@ -1,66 +1,85 @@
-﻿using Octoller.OrderLineHandler.Default;
+﻿/*
+ * ***************************************************************************************
+ * 
+ * Octoller.LineCommander
+ * 25.08.2020
+ *  
+ *****************************************************************************************  
+ */
+
 using Octoller.OrderLineHandler.ServiceObjects;
-using Octoller.OrderLineHandler.Collections;
+using Octoller.OrderLineHandler.Default;
 using System.Collections.Generic;
+using System;
 
 namespace Octoller.OrderLineHandler.Processor {
     public sealed class InputHandler {
 
-        private Dictionary<string, IOrderContainer> orderContainers =
-            new Dictionary<string, IOrderContainer>();
+        private Dictionary<string, IOrderHeader> orderHeaders =
+            new Dictionary<string, IOrderHeader>();
 
         private OrderListCreator creator;
-
         private static Starter starter;
+
         static InputHandler() => starter = new Starter();
 
         public InputHandler() {
             creator = new OrderListCreator();
             AddOrder(new HelperHead());
             ///TODO: добавить возможность установки своих разделителей для комманд и аргументов
-            ///TODO: установка разделителей через строку json 
         }
 
-        public void AddOrder(IOrderContainer orderContainer) {
+        public void AddOrder(IOrderHeader orderContainer) {
             if (orderContainer != null) {
-                orderContainers.Add(orderContainer.Key, orderContainer);
+                orderHeaders.Add(orderContainer.Key, orderContainer);
             }
         }
 
-        public IChContext ReadLine(string input, IChContext context) {
-            var list = creator.Parse(input);
+        public IChContext ParseOrderLine(string input, IChContext context) {
+            var orderQueue = creator.Parse(input);
 
-            if (!list.Empty) {
-                CreateChain(list);
-                starter?.Invoke(context);
-            } else {
+            if (orderQueue.Count == 0) {
                 context.Complite = false;
-                context.SetError("Неверная, либо пустая входная строка комманд");
+                context.SetError("Invalid or empty input string");
+                return context;
             }
-            return context;
+
+            return FollowСhainOrders(orderQueue, context);
         }
 
-        private void CreateChain(OrderList line) {
-            IOrderHandler handler = starter;
-            SimpleOrder order = line.GetNext();
+        private IChContext FollowСhainOrders(Queue<OrderContainer> orderQueue, IChContext context) {
+            OrderContainer order = orderQueue.Dequeue();
+            ICallLinked previousLink = starter;
+            TransitionSign nextSign = TransitionSign.None;
 
             while (order != null) {
-                if (orderContainers.TryGetValue(order.Order, out IOrderContainer value)) {
-                    var temp = value.GetHandler();
-                    temp.SetArgument(order.Arguments);
-                    if (temp is HelperHandler hh) {
-                        hh.SetArgument(orderContainers);
-                        temp = hh;
+                if (orderHeaders.TryGetValue(order.Order, out IOrderHeader header)) {
+
+                    ICallLinked nextLink = new CallLink();
+                    IOrderHandler curentHandler = header.GetHandler();
+
+                    if (curentHandler is HelperHandler helpHand) {
+                        helpHand.SetArgument(orderHeaders);
+                        curentHandler = helpHand;
                     }
-                    handler.SetNext(temp);
-                    handler = temp;
+
+                    nextLink.PrepareHandler(curentHandler, order.Arguments);
+                    previousLink.SetNext(nextLink, nextSign);
+                    previousLink = nextLink;
+                    nextSign = order.Sign;
                 } else {
-                    starter.SetNext(null);
-                    starter.SetErrorInfo("Ошибка в входной строке комманды");
-                    break;
+                    context.Complite = false;
+                    context.SetError("Input command name error");
+                    return context;
                 }
-                order = line.GetNext();
+
+                try {
+                    order = orderQueue.Dequeue();
+                } catch {
+                    break;
+                } 
             }
+            return starter.RunHandler(context);
         }
     }
 }

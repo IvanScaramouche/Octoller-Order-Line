@@ -5,21 +5,20 @@ using System;
 namespace Octoller.OrderLineTestApp {
     public sealed class OrderFor : IOrderHandler {
 
-        private IOrderHandler next;
-
         private int? iterate = default;
         private Action printOperation;
 
-        public void Invoke(IChContext context) {
-            if (context.IsError || iterate is null || context.Action is null) {
+        public bool Invoke(IChContext context) {
+            if (iterate is null || context.Action is null) {
                 context.Complite = false;
                 context.SetError("Некорректный аргумент.");
+                return false;
             } else {
                 printOperation = context.Action;
                 context.Action = For;
                 context.Complite = true;
+                return true;
             }
-            next?.Invoke(context);
         }
 
         public void SetArgument(params string[] arg) {
@@ -28,10 +27,6 @@ namespace Octoller.OrderLineTestApp {
                     iterate = i;
                 }
             }
-        }
-
-        public void SetNext(IOrderHandler handler) {
-            next = handler;
         }
 
         private void For() {

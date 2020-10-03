@@ -1,4 +1,13 @@
-﻿using Octoller.OrderLineHandler.ServiceObjects;
+﻿/*
+ * ***************************************************************************************
+ * 
+ * Octoller.LineCommander
+ * 27.08.2020
+ *  
+ *****************************************************************************************  
+ */
+
+using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 using System.Collections.Generic;
 using System.Text;
@@ -6,16 +15,15 @@ using System.Text;
 namespace Octoller.OrderLineHandler.Default {
     public sealed class HelperHandler : IOrderHandler {
 
-        private IOrderHandler next;
         private StringBuilder orderHelpList;
 
-        public void Invoke(IChContext context) {
-            context.Action = PrintHelp;
+        public bool Invoke(IChContext context) {
+            System.Console.WriteLine(orderHelpList.ToString());
             context.Complite = true;
-            next?.Invoke(context);
+            return true;
         }
 
-        public void SetArgument(Dictionary<string, IOrderContainer> containers) {
+        public void SetArgument(Dictionary<string, IOrderHeader> containers) {
             if (containers != null && containers.Count > 0) {
                 orderHelpList = new StringBuilder();
                 foreach (var container in containers.Values) {
@@ -27,13 +35,6 @@ namespace Octoller.OrderLineHandler.Default {
 
         public void SetArgument(params string[] arg) {
             return;
-        }
-
-        public void SetNext(IOrderHandler handler) =>
-            next = handler;
-
-        private void PrintHelp() {
-            System.Console.WriteLine(orderHelpList.ToString());
         }
     }
 }

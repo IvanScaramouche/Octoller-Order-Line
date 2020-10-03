@@ -2,7 +2,7 @@
 using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineTestApp {
-    public sealed class ContainerFor : IOrderContainer {
+    public sealed class ContainerFor : IOrderHeader {
 
         private static string key = "for";
         private static string description = 
