@@ -20,4 +20,81 @@
   **||** — запускает команду, стоящую за символом ||, только если команда, стоящая перед символом || не была выполнена.
   
   
-* Пропуск через команды объекта реализующего интерфейс **IChContext**
+* Пропуск через обработчики команд объекта реализующего интерфейс `IChContext`, что позволяет отследить успешное выполнение команд, получить результат выполнения или сообщения об ошибках
+
+* Содержит встроенную команду `help` позволяющую вывести список всех загруженных команд с указанием ключа и описанием
+
+### Использование
+Для создания собственной команды необходимо реализовать интерфейсы `IOrderHeader` и `IOrderHandler`
+
+`IOrderHeader` - отвечает за строковое имя команды, её описание для `help` и позволяет получить объект обработчика данной команды
+
+```C#
+using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Processor;
+
+namespace Octoller.OrderLineTestApp {
+    public sealed class ContainerMore : IOrderHeader {
+
+        private static string key = "more";
+        private static string description = 
+            "сравнивает два числа и возвращает большее";
+
+        public string Key {
+            get => key;
+        }
+
+        public string Description {
+            get => description;
+        }
+        
+        // Возвращает объект обработчика команды     
+        public IOrderHandler GetHandler() {
+            return new OrderMore();
+        }
+    }
+```
+
+`IOrderHandler` - отвечает за результат выполнения команды и обработку передоваемого контекста
+
+```C#
+    public sealed class OrderMore : IOrderHandler {
+
+        private int[] numbers = null;
+        private bool isError = false;
+
+        //метод обработки
+        public bool Invoke(IChContext context) {
+            if (isError) {
+                context.Complite = false;
+                context.SetError("Некорректный аргумент.");
+                return false;
+            } else {
+                context.Complite = true;
+                int max = numbers.Max();
+                System.Console.WriteLine(max);
+                return true;
+            }
+        }
+
+        //парсим и проверяем на корректность полученные аргументы из командной строки
+        public void SetArgument(params string[] arg) {
+            if (arg != null && arg.Length > 0) {
+                List<int> temp = new List<int>();
+                foreach (var a in arg) {
+                    if (int.TryParse(a, out int i)) {
+                        temp.Add(i);
+                    } else {
+                        isError = true;
+                        break;
+                    }
+                }
+                numbers = temp.ToArray();
+            } else {
+                isError = true;
+            }
+        }
+    }
+```
+
+     In the process of writing...
