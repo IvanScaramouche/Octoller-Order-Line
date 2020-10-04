@@ -30,7 +30,7 @@
 Для создания собственной команды необходимо реализовать интерфейс `IOrderHandler` и шаблонный класс `BaseHeader<TOrderHandler>`
 
 `BaseHeader<TOrderHandler>` - отвечает за строковое имя команды и её описание для `help`.
-Для использования необходимо переопределить свойства `Key` и `Description`
+Для использования необходимо переопределить свойства `Key` и `Description`, а в параметре наследуемого класса указать тип класса обработчика команды
 
 ```C#
 using Octoller.OrderLineHandler.ServiceObjects;
@@ -48,6 +48,7 @@ public sealed class ContainerMore : BaseHeader<OrderMore> {
 ```
 
 `IOrderHandler` - отвечает за результат выполнения команды и обработку передаваемого контекста
+Класс обработчика должен обязательно содержать пустой конструктор по умолчанию!
 
 ```C#
 using Octoller.OrderLineHandler.ServiceObjects;
