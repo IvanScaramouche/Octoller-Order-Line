@@ -7,12 +7,12 @@
  *****************************************************************************************  
  */
 
-using Octoller.OrderLineHandler.Processor;
+using Octoller.OrderLineHandler.ServiceObjects;
 
-namespace Octoller.OrderLineHandler.ServiceObjects {
-    public interface ICallLinked {
-        void PrepareHandler(IOrderHandler handler, string[] arguments);
-        void SetNext(ICallLinked container, TransitionSign transitionSign);
+namespace Octoller.OrderLineHandler.Processor {
+    public interface IExecution {
+        void PrepareHandler(IOrderHandler handler);
+        void SetNext(IExecution container, TransitionSign transitionSign);
         IChContext RunHandler(IChContext context);
     }
 }

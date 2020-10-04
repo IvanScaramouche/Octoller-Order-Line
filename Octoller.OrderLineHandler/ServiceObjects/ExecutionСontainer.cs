@@ -10,47 +10,37 @@
 using Octoller.OrderLineHandler.ServiceObjects.Extension;
 using Octoller.OrderLineHandler.Processor;
 using System;
-/*
- * ***************************************************************************************
- * 
- * Octoller.LineCommander
- * 03.10.2020
- *  
- *****************************************************************************************  
- */
 
 namespace Octoller.OrderLineHandler.ServiceObjects {
-    public sealed class CallLink : ICallLinked {
+    public sealed class ExecutionСontainer : IExecution {
         
         private IOrderHandler curentHandler;
         private TransitionSign sign;
-        private ICallLinked next;
+        private IExecution next;
 
-        public CallLink() {
+        public ExecutionСontainer() {
             sign = TransitionSign.None;
         }
 
-        public void PrepareHandler(IOrderHandler handler, string[] arguments) {
+        public void PrepareHandler(IOrderHandler handler) {
             if (handler is null) {
                 throw new ArgumentNullException(nameof(handler), "Handler is null");
             }
 
             curentHandler = handler;
-            curentHandler.SetArgument(arguments);
         }
 
-        public void SetNext(ICallLinked container, TransitionSign transitionSign) {
+        public void SetNext(IExecution container, TransitionSign transitionSign) {
             next = container;
             sign = transitionSign;
         }
 
         public IChContext RunHandler(IChContext context) {
-            bool result = curentHandler.Invoke(context);
+            bool result = curentHandler.Invoke(ref context);
             if (sign.CheckPpossibility(result)) {
                 next?.RunHandler(context);
             }
             return context;
         }
-
     }
 }

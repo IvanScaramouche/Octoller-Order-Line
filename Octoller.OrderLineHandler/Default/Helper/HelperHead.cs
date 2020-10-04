@@ -8,24 +8,16 @@
  */
 
 using Octoller.OrderLineHandler.ServiceObjects;
-using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineHandler.Default {
-    public sealed class HelperHead : IOrderHeader {
-
-        private static string key = "help";
-        private static string description = 
-            "Отображает подсказку по всем доступным командам";
-
-        public string Key {
-            get => key;
+    public sealed class HelperHead : BaseHeader<HelperHandler> {
+        
+        public override string Key {
+            get => "help";
         }
 
-        public string Description {
-            get => description;
+        public override string Description {
+            get => "Отображает подсказку по всем доступным командам";
         }
-
-        public IOrderHandler GetHandler() =>
-            new HelperHandler();
     }
 }

@@ -17,6 +17,5 @@ namespace Octoller.OrderLineHandler.ServiceObjects.Extension {
             TransitionSign.NextTrue => handlerResult,
             _ => false
         };
-
     }
 }

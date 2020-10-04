@@ -11,14 +11,14 @@ using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineHandler.Default {
-    public sealed class Starter : ICallLinked {
+    public sealed class Starter : IExecution {
 
 
-        private ICallLinked next;
+        private IExecution next;
 
         public Starter() { }
 
-        public void PrepareHandler(IOrderHandler handler, string[] arguments) {
+        public void PrepareHandler(IOrderHandler handler) {
             return;
         }
 
@@ -32,7 +32,7 @@ namespace Octoller.OrderLineHandler.Default {
             return next?.RunHandler(context); 
         }
 
-        public void SetNext(ICallLinked container, TransitionSign transitionSign) =>
+        public void SetNext(IExecution container, TransitionSign transitionSign) =>
             next = container;
     }
 }

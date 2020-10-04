@@ -2,18 +2,20 @@
  * ***************************************************************************************
  * 
  * Octoller.LineCommander
- * 27.08.2020
+ * 04.10.2020
  *  
  *****************************************************************************************  
  */
 
-using Octoller.OrderLineHandler.Processor;
-
 namespace Octoller.OrderLineHandler.ServiceObjects {
-    public interface IOrderHeader {
+    public class NullParseElement : ParseElement {
+        
+        public override bool IsNull {
+            get => true;
+        }
 
-        string Key { get; }
-        string Description { get; }
-        IOrderHandler GetHandler(params string[] arg);
+        public NullParseElement() 
+            : base(null, null, TransitionSign.None) { /*  */}
+
     }
 }

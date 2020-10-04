@@ -17,7 +17,7 @@ namespace Octoller.OrderLineHandler.Default {
 
         private StringBuilder orderHelpList;
 
-        public bool Invoke(IChContext context) {
+        public bool Invoke(ref IChContext context) {
             System.Console.WriteLine(orderHelpList.ToString());
             context.Complite = true;
             return true;

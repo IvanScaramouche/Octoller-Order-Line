@@ -2,22 +2,18 @@
 using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineTestApp {
-        public sealed class ContainerMore : IOrderHeader {
+        public sealed class ContainerMore : BaseHeader<OrderMore> {
 
             private static string key = "more";
             private static string description =
                 "сравнивает два числа и возвращает большее";
 
-            public string Key {
+            public override string Key {
                 get => key;
             }
 
-            public string Description {
+            public override string Description {
                 get => description;
-            }
-
-            public IOrderHandler GetHandler() {
-                return new OrderMore();
             }
         }
     }

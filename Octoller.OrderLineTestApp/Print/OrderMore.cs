@@ -9,7 +9,7 @@ namespace Octoller.OrderLineTestApp {
         private int[] numbers = null;
          private bool isError = false;
 
-        public bool Invoke(IChContext context) {
+        public bool Invoke(ref IChContext context) {
             if (isError) {
                 context.Complite = false;
                 context.SetError("Некорректный аргумент.");

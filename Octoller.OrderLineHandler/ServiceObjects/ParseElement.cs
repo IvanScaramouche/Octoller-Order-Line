@@ -8,7 +8,11 @@
  */
 
 namespace Octoller.OrderLineHandler.ServiceObjects {
-    public sealed class OrderContainer {
+    public class ParseElement {
+
+        public virtual bool IsNull {
+            get => false;
+        }
 
         public TransitionSign Sign {
             get; private set;
@@ -22,13 +26,13 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
             get; private set;
         }
 
-        public OrderContainer(string order)
+        public ParseElement(string order)
             : this(order, null, TransitionSign.None) { }
 
-        public OrderContainer(string order, string[] arguments)
+        public ParseElement(string order, string[] arguments)
             : this(order, arguments, TransitionSign.None) { }
 
-        public OrderContainer(string order, string[] arguments, TransitionSign sign) {
+        public ParseElement(string order, string[] arguments, TransitionSign sign) {
             Order = order;
             Sign = sign;
             Arguments = arguments;
