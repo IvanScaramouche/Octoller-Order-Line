@@ -27,31 +27,23 @@
 * Содержит встроенную команду `help` позволяющую вывести список всех загруженных команд с указанием ключа и описанием
 
 ### Использование
-Для создания собственной команды необходимо реализовать интерфейсы `IOrderHeader` и `IOrderHandler`
+Для создания собственной команды необходимо реализовать интерфейс `IOrderHandler` и шаблонный класс `BaseHeader<TOrderHandler>`
 
-`IOrderHeader` - отвечает за строковое имя команды, её описание для `help` и позволяет получить объект обработчика данной команды
+`BaseHeader<TOrderHandler>` - отвечает за строковое имя команды и её описание для `help`.
+Для использования необходимо переопределить свойства `Key` и `Description`
 
 ```C#
 using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
-public sealed class ContainerMore : IOrderHeader {
+public sealed class ContainerMore : BaseHeader<OrderMore> {
 
-  private static string key = "more";
-  private static string description = 
-      "выводит большее число из полученного массива";
-
-  public string Key {
-      get => key;
+  public override string Key {
+      get => "more";
   }
 
-  public string Description {
-      get => description;
-  }
-
-  // Возвращает объект обработчика команды     
-  public IOrderHandler GetHandler() {
-      return new OrderMore();
+  public override string Description {
+      get => "выводит большее число из полученного массива";
   }
 }
 ```
