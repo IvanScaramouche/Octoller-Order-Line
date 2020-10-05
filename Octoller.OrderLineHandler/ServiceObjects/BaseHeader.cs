@@ -20,7 +20,7 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
             get;
         }
 
-        public IOrderHandler GetHandler(params string[] arg) {
+        IOrderHandler IOrderHeader.GetHandler(params string[] arg) {
             IOrderHandler handler = new TOrderHandler();
             handler.SetArgument(arg);
             return handler;

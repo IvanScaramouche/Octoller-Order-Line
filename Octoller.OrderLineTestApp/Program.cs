@@ -8,7 +8,6 @@ namespace Octoller.OrderLineTestApp {
 
             InputHandler handler = new InputHandler();
             handler.AddOrder(new ContainerMore());
-            handler.AddOrder(new ContainerFor());
 
             while (true) {
 

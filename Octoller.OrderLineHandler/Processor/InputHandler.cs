@@ -8,9 +8,9 @@
  */
 
 using Octoller.OrderLineHandler.ServiceObjects;
+using Octoller.OrderLineHandler.Wrappers;
 using Octoller.OrderLineHandler.Default;
 using System.Collections.Generic;
-using Octoller.OrderLineHandler.Wrappers;
 
 namespace Octoller.OrderLineHandler.Processor {
     public sealed class InputHandler {
@@ -54,7 +54,7 @@ namespace Octoller.OrderLineHandler.Processor {
             TransitionSign nextSign = TransitionSign.None;
 
             while (!parseElement.IsNull) {
-                if (orderHeaders.TryGetValue(parseElement.Order, out IOrderHeader header)) {
+                if (orderHeaders.TryGetValue(parseElement.OrderName, out IOrderHeader header)) {
 
                     IExecution nextLink = new ExecutionСontainer();
                     IOrderHandler curentHandler = header.GetHandler(parseElement.Arguments);

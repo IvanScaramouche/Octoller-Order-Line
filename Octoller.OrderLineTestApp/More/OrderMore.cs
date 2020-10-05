@@ -7,12 +7,12 @@ namespace Octoller.OrderLineTestApp {
     public sealed class OrderMore : IOrderHandler {
 
         private int[] numbers = null;
-         private bool isError = false;
+        private bool isError = false;
 
         public bool Invoke(ref IChContext context) {
             if (isError) {
                 context.Complite = false;
-                context.SetError("Некорректный аргумент.");
+                context.SetError("Invalid argument.");
                 return false;
             } else {
                 context.Complite = true;

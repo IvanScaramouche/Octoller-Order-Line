@@ -18,7 +18,7 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
             get; private set;
         }
 
-        public string Order {
+        public string OrderName {
             get; private set;
         }
 
@@ -32,8 +32,8 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
         public ParseElement(string order, string[] arguments)
             : this(order, arguments, TransitionSign.None) { }
 
-        public ParseElement(string order, string[] arguments, TransitionSign sign) {
-            Order = order;
+        public ParseElement(string orderName, string[] arguments, TransitionSign sign) {
+            OrderName = orderName;
             Sign = sign;
             Arguments = arguments;
         }
