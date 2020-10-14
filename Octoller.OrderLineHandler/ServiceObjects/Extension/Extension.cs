@@ -7,10 +7,11 @@
  *****************************************************************************************  
  */
 
-namespace Octoller.OrderLineHandler.ServiceObjects.Extension {
-    public static class EnumExtension {
-        public static bool CheckPpossibility(this TransitionSign sign, bool handlerResult) => sign switch
-        {
+namespace Octoller.OrderLineHandler.ServiceObjects {
+    public static class Extension {
+        public static bool CheckPpossibility(this TransitionSign sign, bool handlerResult) 
+            => sign switch {
+
             TransitionSign.None => false,
             TransitionSign.NextAny => true,
             TransitionSign.NextFalse => !handlerResult,

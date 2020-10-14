@@ -1,9 +1,10 @@
 ﻿using Octoller.OrderLineHandler.Processor;
-using Octoller.OrderLineHandler.ServiceObjects;
 using System;
 
 namespace Octoller.OrderLineTestApp {
+
     class Program {
+
         static void Main() {
 
             InputHandler handler = new InputHandler();
@@ -16,13 +17,17 @@ namespace Octoller.OrderLineTestApp {
                 var context = handler.ParseOrderLine(line, new ChContext());
 
                 if (context.Complite) {
+
                     context.Action?.Invoke();
+
                     if (context.IsMessage) {
+
                         Console.WriteLine(context.GetMessage());
                     }
                 }
 
                 if (context.IsError) {
+
                     Console.WriteLine(context.GetError());
                 }
             }

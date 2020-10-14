@@ -8,7 +8,9 @@
  */
 
 namespace Octoller.OrderLineHandler.ServiceObjects {
+
     public enum TransitionSign {
+
         None = -1,      //если нет признака перехода
         NextFalse = 0,  //переход при результате false
         NextTrue = 1,   //переход при результате true

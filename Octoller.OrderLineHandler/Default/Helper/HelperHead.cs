@@ -10,6 +10,7 @@
 using Octoller.OrderLineHandler.ServiceObjects;
 
 namespace Octoller.OrderLineHandler.Default {
+
     public sealed class HelperHead : BaseHeader<HelperHandler> {
         
         public override string Key {

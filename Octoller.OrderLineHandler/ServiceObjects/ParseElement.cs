@@ -8,6 +8,7 @@
  */
 
 namespace Octoller.OrderLineHandler.ServiceObjects {
+
     public class ParseElement {
 
         public virtual bool IsNull {
@@ -33,6 +34,7 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
             : this(order, arguments, TransitionSign.None) { }
 
         public ParseElement(string orderName, string[] arguments, TransitionSign sign) {
+
             OrderName = orderName;
             Sign = sign;
             Arguments = arguments;

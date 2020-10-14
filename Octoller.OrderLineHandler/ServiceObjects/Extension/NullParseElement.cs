@@ -8,6 +8,7 @@
  */
 
 namespace Octoller.OrderLineHandler.ServiceObjects {
+
     public class NullParseElement : ParseElement {
         
         public override bool IsNull {

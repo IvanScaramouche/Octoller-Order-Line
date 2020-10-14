@@ -10,6 +10,7 @@
 using System;
 
 namespace Octoller.OrderLineHandler.ServiceObjects {
+
     public interface IChContext {
 
         bool Complite { get; set; }
@@ -22,6 +23,7 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
 
         void SetError(string message, bool isError = true);
         void SetMessage(string message, bool isMessage = true);
+
         string GetError();
         string GetMessage();
     }

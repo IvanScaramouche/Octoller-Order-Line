@@ -11,8 +11,8 @@ using Octoller.OrderLineHandler.ServiceObjects;
 using Octoller.OrderLineHandler.Processor;
 
 namespace Octoller.OrderLineHandler.Default {
-    public sealed class Starter : IExecution {
 
+    public sealed class Starter : IExecution {
 
         private IExecution next;
 
@@ -23,7 +23,9 @@ namespace Octoller.OrderLineHandler.Default {
         }
 
         public IChContext RunHandler(IChContext context) {
+
             if (next is null) {
+
                 context.Complite = false;
                 context.SetError("Execution chain error");
                 return context;

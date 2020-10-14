@@ -16,10 +16,13 @@ using System.Collections.Generic;
 /// Теперь вовращается объект NullParseElement
 /// </summary>
 namespace Octoller.OrderLineHandler.Wrappers {
+
     public sealed class QueueWrap {
+
         private Queue<ParseElement> orderContainers;
 
         public QueueWrap() {
+
             orderContainers = new Queue<ParseElement>();
         }
 
@@ -28,14 +31,20 @@ namespace Octoller.OrderLineHandler.Wrappers {
         }
 
         public void Enqueue(ParseElement container) {
+
             orderContainers.Enqueue(container);
         }
 
         public ParseElement Dequeue() {
+
             try {
+
                 return orderContainers.Dequeue();
+
             } catch {
+
                 return new NullParseElement();
+
             }
         }
     }
