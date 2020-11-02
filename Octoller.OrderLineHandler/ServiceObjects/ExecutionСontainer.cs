@@ -32,7 +32,7 @@ namespace Octoller.OrderLineHandler.ServiceObjects {
 
             if (handler is null) {
 
-                throw new ArgumentNullException(nameof(handler), "Handler is null");
+                throw new ArgumentNullException(nameof(handler), "Handler is null.");
             }
 
             curentHandler = handler;

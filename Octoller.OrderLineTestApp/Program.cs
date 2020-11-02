@@ -27,8 +27,10 @@ namespace Octoller.OrderLineTestApp {
                 }
 
                 if (context.IsError) {
-
+                    ConsoleColor oldColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(context.GetError());
+                    Console.ForegroundColor = oldColor;
                 }
             }
         }

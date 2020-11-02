@@ -62,11 +62,12 @@ namespace Octoller.OrderLineHandler.Processor {
                         resultQueue.Enqueue(new ParseElement(nameOrder, 
                             arguments?.ToArray(), 
                             transitionSeparator[advance[next]]));
+
                         i = next;
 
                     } else {
 
-                        throw new ArgumentException("Ошибка в строке команды");
+                        throw new ArgumentException("Error in line command.");
                     }
                 } else {
 

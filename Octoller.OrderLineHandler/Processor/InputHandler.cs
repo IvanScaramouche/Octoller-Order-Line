@@ -68,13 +68,30 @@ namespace Octoller.OrderLineHandler.Processor {
 
         public IChContext ParseOrderLine(string input, IChContext context) {
 
+            IChContext ansver;
+
+            try {
+
+                ansver = Parse(input, context);
+                
+            } catch (Exception ex) {
+
+                ansver = context;
+                ansver.Complite = false;
+                ansver.SetError($"Error: {ex.Message}");
+
+            }
+
+            return ansver;
+        }
+
+        private IChContext Parse(string input, IChContext context) {
+
             var orderQueue = creator.Parse(input);
 
             if (orderQueue.Count == 0) {
 
-                context.Complite = false;
-                context.SetError("Invalid or empty input string");
-                return context;
+                throw new ArgumentException("Invalid or empty input string.");
             }
 
             return FollowСhainOrders(orderQueue, context);
@@ -107,9 +124,7 @@ namespace Octoller.OrderLineHandler.Processor {
 
                 } else {
 
-                    context.Complite = false;
-                    context.SetError("Input command name error");
-                    return context;
+                    throw new ArgumentException("Input command name error.");
                 }
 
                 parseElement = queue.Dequeue();
