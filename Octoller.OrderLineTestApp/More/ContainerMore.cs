@@ -1,14 +1,21 @@
 ﻿using Octoller.OrderLineHandler.ServiceObjects;
 
-namespace Octoller.OrderLineTestApp {
-    public sealed class ContainerMore : BaseHeader<OrderMore> {
+namespace Octoller.OrderLineTestApp
+{
+    public sealed class ContainerMore : BaseHeader<OrderMore>
+    {
+        #region Public Properties
 
-        public override string Key {
+        public override string Description
+        {
+            get => "сравнивает два числа и возвращает большее";
+        }
+
+        public override string Key
+        {
             get => "more";
         }
 
-        public override string Description {
-            get => "сравнивает два числа и возвращает большее";
-        }
+        #endregion Public Properties
     }
 }

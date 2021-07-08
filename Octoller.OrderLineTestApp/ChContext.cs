@@ -1,44 +1,53 @@
 ﻿using Octoller.OrderLineHandler.ServiceObjects;
 using System;
 
-namespace Octoller.OrderLineTestApp {
-    public sealed class ChContext : IChContext {
+namespace Octoller.OrderLineTestApp
+{
+    public sealed class ChContext : IChContext
+    {
+        #region Private Fields
 
-        private string error;
-        private string message;
+        private string _error;
+        private string _message;
 
-        public bool Complite {
-            get; set;
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public Action Action { get; set; }
+
+        public bool Complite { get; set; }
+
+        public bool IsError { get; set; }
+
+        public bool IsMessage { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public string GetError()
+        {
+            return _error;
         }
 
-        public bool IsError {
-            get; set;
+        public string GetMessage()
+        {
+            return _message;
         }
 
-        public Action Action {
-            get; set;
-        }
-
-        public bool IsMessage {
-            get; set;
-        }
-
-        public string GetError() {
-            return error;
-        }
-
-        public void SetError(string description, bool isError = true) {
-            error = description;
+        public void SetError(string description, bool isError = true)
+        {
+            _error = description;
             IsError = isError;
         }
 
-        public void SetMessage(string description, bool isMessage = true) {
-            message = description;
+        public void SetMessage(string description, bool isMessage = true)
+        {
+            _message = description;
             IsMessage = isMessage;
         }
 
-        public string GetMessage() {
-            return message;
-        }
+        #endregion Public Methods
     }
 }

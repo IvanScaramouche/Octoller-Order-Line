@@ -1,32 +1,35 @@
 ﻿using Octoller.OrderLineHandler.Processor;
 using System;
 
-namespace Octoller.OrderLineTestApp {
+namespace Octoller.OrderLineTestApp
+{
+    internal class Program
+    {
+        #region Private Methods
 
-    class Program {
-
-        static void Main() {
-
+        private static void Main()
+        {
             InputHandler handler = new InputHandler();
             handler.AddOrder(new ContainerMore());
 
-            while (true) {
-
+            while (true)
+            {
                 string line = Console.ReadLine();
 
                 var context = handler.ParseOrderLine(line, new ChContext());
 
-                if (context.Complite) {
-
+                if (context.Complite)
+                {
                     context.Action?.Invoke();
 
-                    if (context.IsMessage) {
-
+                    if (context.IsMessage)
+                    {
                         Console.WriteLine(context.GetMessage());
                     }
                 }
 
-                if (context.IsError) {
+                if (context.IsError)
+                {
                     ConsoleColor oldColor = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(context.GetError());
@@ -34,5 +37,7 @@ namespace Octoller.OrderLineTestApp {
                 }
             }
         }
+
+        #endregion Private Methods
     }
 }

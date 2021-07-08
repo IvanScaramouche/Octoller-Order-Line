@@ -3,40 +3,61 @@ using Octoller.OrderLineHandler.Processor;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Octoller.OrderLineTestApp {
-    public sealed class OrderMore : IOrderHandler {
+namespace Octoller.OrderLineTestApp
+{
+    public sealed class OrderMore : IOrderHandler
+    {
+        #region Private Fields
 
-        private int[] numbers = null;
-        private bool isError = false;
+        private bool _isError = false;
+        private int[] _numbers = null;
 
-        public bool Invoke(ref IChContext context) {
-            if (isError) {
+        #endregion Private Fields
+
+        #region Public Methods
+
+        public bool Invoke(ref IChContext context)
+        {
+            if (_isError)
+            {
                 context.Complite = false;
                 context.SetError("Invalid argument.");
                 return false;
-            } else {
+            }
+            else
+            {
                 context.Complite = true;
-                int max = numbers.Max();
+                int max = _numbers.Max();
                 System.Console.WriteLine(max);
                 return true;
             }
         }
 
-        public void SetArgument(params string[] arg) {
-            if (arg != null && arg.Length > 0) {
+        public void SetArgument(params string[] arg)
+        {
+            if (arg != null && arg.Length > 0)
+            {
                 List<int> temp = new List<int>();
-                foreach (var a in arg) {
-                    if (int.TryParse(a, out int i)) {
+                foreach (var a in arg)
+                {
+                    if (int.TryParse(a, out int i))
+                    {
                         temp.Add(i);
-                    } else {
-                        isError = true;
+                    }
+                    else
+                    {
+                        _isError = true;
                         break;
                     }
                 }
-                numbers = temp.ToArray();
-            } else {
-                isError = true;
+                _numbers = temp.ToArray();
+            }
+            else
+            {
+                _isError = true;
             }
         }
+
+        #endregion Public Methods
     }
 }

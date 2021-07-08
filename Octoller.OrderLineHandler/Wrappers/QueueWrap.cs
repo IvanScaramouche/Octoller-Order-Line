@@ -1,15 +1,15 @@
 ﻿/*
  * ************************************************************
- *   _     _              _   _                 _ _           
- *  | |   (_)_ __   ___  | | | | __ _ _ __   __| | | ___ _ __ 
+ *   _     _              _   _                 _ _
+ *  | |   (_)_ __   ___  | | | | __ _ _ __   __| | | ___ _ __
  *  | |   | | '_ \ / _ \ | |_| |/ _` | '_ \ / _` | |/ _ \ '__|
- *  | |___| | | | |  __/ |  _  | (_| | | | | (_| | |  __/ |   
- *  |_____|_|_| |_|\___| |_| |_|\__,_|_| |_|\__,_|_|\___|_|   
+ *  | |___| | | | |  __/ |  _  | (_| | | | | (_| | |  __/ |
+ *  |_____|_|_| |_|\___| |_| |_|\__,_|_| |_|\__,_|_|\___|_|
  *
  * Octoller.LineCommander
  * 03.10.2020
- *  
- ************************************************************** 
+ *
+ **************************************************************
  */
 
 using Octoller.OrderLineHandler.ServiceObjects;
@@ -20,37 +20,53 @@ using System.Collections.Generic;
 /// последний элемент очереди при пустой очереди.
 /// Теперь вовращается объект NullParseElement
 /// </summary>
-namespace Octoller.OrderLineHandler.Wrappers {
+namespace Octoller.OrderLineHandler.Wrappers
+{
+    public sealed class QueueWrap
+    {
+        #region Private Fields
 
-    public sealed class QueueWrap {
+        private Queue<ParseElement> _orderContainers;
 
-        private Queue<ParseElement> orderContainers;
+        #endregion Private Fields
 
-        public QueueWrap() {
+        #region Public Properties
 
-            orderContainers = new Queue<ParseElement>();
+        public int Count
+        {
+            get => _orderContainers.Count;
         }
 
-        public int Count {
-            get => orderContainers.Count;
+        #endregion Public Properties
+
+        #region Public Constructors
+
+        public QueueWrap()
+        {
+            _orderContainers = new Queue<ParseElement>();
         }
 
-        public void Enqueue(ParseElement container) {
+        #endregion Public Constructors
 
-            orderContainers.Enqueue(container);
-        }
+        #region Public Methods
 
-        public ParseElement Dequeue() {
-
-            try {
-
-                return orderContainers.Dequeue();
-
-            } catch {
-
+        public ParseElement Dequeue()
+        {
+            if (_orderContainers.Count > 0)
+            {
+                return _orderContainers.Dequeue();
+            }
+            else
+            {
                 return new NullParseElement();
-
             }
         }
+
+        public void Enqueue(ParseElement container)
+        {
+            _orderContainers.Enqueue(container);
+        }
+
+        #endregion Public Methods
     }
 }
